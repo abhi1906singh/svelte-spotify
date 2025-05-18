@@ -7,6 +7,10 @@ export default defineConfig({
 	test: {
 		workspace: [
 			{
+				server: {
+					host: '[::1]', // Force IPv6
+					port: 5173,
+				},
 				extends: './vite.config.ts',
 				plugins: [svelteTesting()],
 				test: {

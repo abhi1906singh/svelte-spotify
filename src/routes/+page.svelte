@@ -1,4 +1,9 @@
 <h1>Welcome to my spotify application</h1>
+<input/>
+<select>
+    <option>Hello</option>
+</select>
+<button>Button</button>
 <style lang="scss">
     @use '../styles/functions';
     @use '@unsass/breakpoint';
