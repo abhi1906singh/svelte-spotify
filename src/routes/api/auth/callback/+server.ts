@@ -7,7 +7,6 @@ export const GET:RequestHandler=async({url,cookies,fetch})=>{
     // const state=url.searchParams.get('state') || null;
     // const storedState=cookies.get('spotify_auth_state')||null;
     // const storedChallenge=cookies.get('spotify_auth_challenge_verifier')||null;
-    // console.log(event)
     // return new Response("Something have happened");
     // if(state !==null || state !==storedState){
     // throw error(400,"State mismatch!");
@@ -28,12 +27,11 @@ export const GET:RequestHandler=async({url,cookies,fetch})=>{
         })
     });
     const responseJSON= await response.json();
-    console.log(responseJSON);
     if(responseJSON.error){
     throw error(400,responseJSON.error_description);
     }
-        cookies.delete('spotify_auth_state', { path: '/' });
-        cookies.delete('spotify_auth_challenge_verifier', { path: '/' });
+        // cookies.delete('spotify_auth_state', { path: '/' });
+        // cookies.delete('spotify_auth_challenge_verifier', { path: '/' });
         cookies.set('refresh_token',responseJSON.refresh_token,{path:'/'});
         cookies.set('access_token',responseJSON.access_token,{path:'/'})
     throw redirect(303,'/');
