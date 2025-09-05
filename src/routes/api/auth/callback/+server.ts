@@ -1,19 +1,25 @@
 import { error, redirect } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
 import { BASE_URL, SPOTIFY_APP_CLIENT_ID, SPOTIFY_APP_CLIENT_SECRET } from "$env/static/private";
+import { codeVerifierMap,stateMap } from "$lib/server/codeVerifier";
 
 export const GET:RequestHandler=async({url,cookies,fetch})=>{
     const code=url.searchParams.get('code') || null;
-    // const state=url.searchParams.get('state') || null;
-    // const storedState=cookies.get('spotify_auth_state')||null;
-    // const storedChallenge=cookies.get('spotify_auth_challenge_verifier')||null;
-    // return new Response("Something have happened");
-    // if(state !==null || state !==storedState){
-    // throw error(400,"State mismatch!");
-    // }
+    const state=url.searchParams.get('state') || null;
+    const storedState =url.searchParams.get('state') || null;
+    console.log(state,storedState,'=========')
+    if(!state || !stateMap.has(state)){
+    throw error(400,"State mismatch!");
+    }
+    const codeVerifier = codeVerifierMap.get(state);
+    console.log(codeVerifier,'===================')
+    if (!codeVerifier) {
+        throw error(400, 'Missing code_verifier');
+    }
+
     const response= await fetch('https://accounts.spotify.com/api/token',{
         method:"POST",
-        headers: {
+        headers: {  
             'Content-Type':'application/x-www-form-urlencoded',
             Authorization:`Basic ${Buffer.from(`${SPOTIFY_APP_CLIENT_ID}:${SPOTIFY_APP_CLIENT_SECRET}`)
         .toString('base64')}`
@@ -22,8 +28,8 @@ export const GET:RequestHandler=async({url,cookies,fetch})=>{
             code:code || '',
             redirect_uri:`${BASE_URL}/api/auth/callback`,
             grant_type: 'authorization_code',
-            // code_verifier:storedChallenge || '',
-            // client_id:SPOTIFY_APP_CLIENT_ID
+            code_verifier:codeVerifier || '',
+            client_id:SPOTIFY_APP_CLIENT_ID
         })
     });
     const responseJSON= await response.json();

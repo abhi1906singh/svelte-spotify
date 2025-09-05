@@ -8,7 +8,7 @@ export default defineConfig({
 		workspace: [
 			{
 				server: {
-					host: '[::1]', // Force IPv6
+					host: true, // Force IPv6
 					port: 5173,
 				},
 				extends: './vite.config.ts',

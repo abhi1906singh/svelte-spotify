@@ -1,4 +1,4 @@
-import { SPOTIFY_BASE_URL } from "$env/static/private";
+import { SPOTIFY_URL } from "$env/static/private";
 import { redirect } from "@sveltejs/kit";
 import type { LayoutServerLoad } from "./$types";
 
@@ -10,7 +10,7 @@ export const load:LayoutServerLoad=async ({cookies,fetch,url})=>{
             user:null,
         };
         }
-      const profileRes=await fetch(`${SPOTIFY_BASE_URL}/me`,{
+      const profileRes=await fetch(`${SPOTIFY_URL}/me`,{
         headers: {
           Authorization: 'Bearer ' + accessToken
         }
