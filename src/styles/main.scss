@@ -1,9 +1,18 @@
 @use 'functions';
-@import '@fontsource/metropolis';
-@import '@fontsource/metropolis/300';
-@import '@fontsource/metropolis/500';
-@import '@fontsource/metropolis/600';
-@import '@fontsource/metropolis/700';
+// @import '@fontsource/metropolis';
+// @import '@fontsource/metropolis/300';
+// @import '@fontsource/metropolis/500';
+// @import '@fontsource/metropolis/600';
+// @import '@fontsource/metropolis/700';
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
 
 :root {
 	--bg-color: #191414;
@@ -68,8 +77,6 @@ h6 {
 p {
 	font-size: functions.toRem(16);
 	line-height: 1.7;
-	margin-top: 1em;
-	margin-bottom: 1em;
 }
 
 a {
@@ -84,4 +91,13 @@ a {
 		outline: 2px solid var(--accent-color);
 		outline-offset: 2px;
 	}
+}
+.p-05{
+	padding: 5px;
+}
+.p-1 {
+   padding: 10px;
+}
+.p-2 {
+	padding: 20px;
 }
