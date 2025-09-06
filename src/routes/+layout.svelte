@@ -4,6 +4,11 @@
 	import type { LayoutData } from './$types';
 	import LogoutButton from '$lib/components/LogoutButton.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
+    import "@fontsource/metropolis";      // base
+    import "@fontsource/metropolis/300.css";
+    import "@fontsource/metropolis/500.css";
+    import "@fontsource/metropolis/600.css";
+    import "@fontsource/metropolis/700.css"
     	
 
     export let data:LayoutData;
