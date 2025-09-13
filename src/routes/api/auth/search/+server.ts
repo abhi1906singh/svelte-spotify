@@ -1,9 +1,7 @@
-import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { SPOTIFY_URL } from '$env/static/private';
 export const GET: RequestHandler = async ({ url, fetch, cookies }) => {
 	const query = url.searchParams.get('q');
-	console.log(query, '============');
 	if (!query) {
 		return new Response(JSON.stringify({ error: 'Missing query' }), { status: 400 });
 	}

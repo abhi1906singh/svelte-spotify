@@ -7,12 +7,10 @@
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
-
-
 
 :root {
 	--bg-color: #191414;
@@ -80,7 +78,11 @@ p {
 }
 
 a {
-	color: var(--accent-color);
+	color: #fff;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
 }
 
 select,
@@ -92,12 +94,32 @@ a {
 		outline-offset: 2px;
 	}
 }
-.p-05{
+.p-05 {
 	padding: 5px;
 }
 .p-1 {
-   padding: 10px;
+	padding: 10px;
 }
 .p-2 {
 	padding: 20px;
+}
+.flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.hover-card {
+	padding: 10px;
+}
+.hover-card:hover {
+	background-color: #eee9e936;
+}
+.gap-05 {
+	gap: 5px;
+}
+.gap-1 {
+	gap: 10px;
+}
+.gap-2 {
+	gap: 20px;
 }
